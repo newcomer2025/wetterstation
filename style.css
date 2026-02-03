@@ -24,3 +24,8 @@ li{
 }
 li:last-child{border-bottom:none}
 strong{font-size: 18px}
+.subtitle{
+  margin-top: 6px;
+  color: #a8b3cc;
+  font-size: 16px;
+}
