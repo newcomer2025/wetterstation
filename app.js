@@ -40,6 +40,21 @@ async function load() {
     // optional: still bleiben oder in Konsole loggen
     console.log("Load error:", e);
   }
+    // --- Nowcast laden (JSON) ---
+  try {
+    const r2 = await fetch("nowcast.json?cb=" + Date.now(), { cache: "no-store" });     
+    if (r2.ok) {
+      const nc = await r2.json();
+      document.getElementById("nc_temp").textContent    = nc.temp_text || "–";
+      document.getElementById("nc_press").textContent   = nc.press_text || "–";
+      document.getElementById("nc_fog").textContent     = nc.fog_text || "–";
+      document.getElementById("nc_comfort").textContent = nc.comfort_text || "–";
+      document.getElementById("nc_frost").textContent   = nc.frost_text || "–";
+    }
+  } catch (e) {
+    // ok, falls nowcast.json noch nicht erreichbar ist
+  }
+
 }
 
 load();
